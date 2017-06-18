@@ -27,7 +27,7 @@ public class SyncProduce {
         for (long nEvents = 0; nEvents < events; nEvents++) { 
                long runtime = new Date().getTime();  
                String ip = "192.168.2." + rnd.nextInt(255); 
-               String msg = runtime + ",www.example.com," + ip; 
+               String msg = runtime + ",message ," + ip; 
              //eventKey必须有（即使自己的分区算法不会用到这个key，也不能设为null或者""）,否者自己的分区算法根本得不到调用
                KeyedMessage<String, String> data = new KeyedMessage<String, String>("test", ip, msg);
 			   												//			 eventTopic, eventKey, eventBody

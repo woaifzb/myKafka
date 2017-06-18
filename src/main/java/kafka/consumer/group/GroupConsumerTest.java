@@ -69,9 +69,10 @@ public class GroupConsumerTest extends Thread {
 			System.out.println("Please assign partition number.");
 		}
 		
-        String zooKeeper = "10.206.216.13:12181,10.206.212.14:12181,10.206.209.25:12181";
+   //     String zooKeeper = "10.206.216.13:12181,10.206.212.14:12181,10.206.209.25:12181";
+		 String zooKeeper = "127.0.0.1:2181";
         String groupId = "jikegrouptest";
-        String topic = "jiketest";
+        String topic = "test";
         int threads = Integer.parseInt(args[0]);
  
 		GroupConsumerTest example = new GroupConsumerTest(zooKeeper, groupId, topic);
