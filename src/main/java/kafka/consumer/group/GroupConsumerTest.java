@@ -13,6 +13,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
 public class GroupConsumerTest extends Thread {
+	static final int threadNum=1;
 	private final ConsumerConnector consumer;
     private final String topic;
     private  ExecutorService executor;
@@ -65,18 +66,21 @@ public class GroupConsumerTest extends Thread {
     }
 	
 	public static void main(String[] args) {
+		int runThreads=0;
 		if(args.length < 1){
 			System.out.println("Please assign partition number.");
+			runThreads=threadNum;
 		}
-		
+		else{
+			runThreads=Integer.valueOf(args[0]);
+		}
    //     String zooKeeper = "10.206.216.13:12181,10.206.212.14:12181,10.206.209.25:12181";
 		 String zooKeeper = "127.0.0.1:2181";
         String groupId = "jikegrouptest";
         String topic = "test";
-        int threads = Integer.parseInt(args[0]);
  
 		GroupConsumerTest example = new GroupConsumerTest(zooKeeper, groupId, topic);
-        example.run(threads);
+        example.run(runThreads);
  
         try {
             Thread.sleep(Long.MAX_VALUE);
