@@ -17,24 +17,33 @@ import java.util.List;
 import java.util.Map;
 
 public class PartitionConsumerTest {
+	static final int threadNum=1;
 	public static void main(String args[]) {
 		PartitionConsumerTest example = new PartitionConsumerTest();
         long maxReads = Long.MAX_VALUE;
-        String topic = "jiketest";
+        String topic = "test";
+		
+		
+		int runThreads=0;
 		if(args.length < 1){
 			System.out.println("Please assign partition number.");
+			runThreads=threadNum;
+		}
+		else{
+			runThreads=Integer.valueOf(args[0]);
 		}
 		
 		List<String> seeds = new ArrayList<String>();
-		String hosts="10.206.216.13,10.206.212.14,10.206.209.25";
+	//	String hosts="10.206.216.13,10.206.212.14,10.206.209.25";
+		String hosts="127.0.0.1";
 		String[] hostArr = hosts.split(",");
 		for(int index = 0;index < hostArr.length;index++){
 			seeds.add(hostArr[index].trim());
 		}
 		
-		int port = 19092;
+		int port = 9092;
 		 
-        int partLen = Integer.parseInt(args[0]);
+        int partLen = runThreads;
 		for(int index=0;index < partLen;index++){
 	        try {
 	            example.run(maxReads, topic, index/*partition*/, seeds, port);

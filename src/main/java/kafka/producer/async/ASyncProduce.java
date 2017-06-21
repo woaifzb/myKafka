@@ -14,7 +14,7 @@ public class ASyncProduce {
  
         Properties props = new Properties();
      //   props.put("metadata.broker.list", "10.206.216.13:19092,10.206.212.14:19092,10.206.209.25:19092");
-        props.put("metadata.broker.list", "127.0.0,1:19092");
+        props.put("metadata.broker.list", "127.0.0.1:9092");
         props.put("serializer.class", "kafka.serializer.StringEncoder");
 		//kafka.serializer.DefaultEncoder
         props.put("partitioner.class", "kafka.producer.partiton.SimplePartitioner");
